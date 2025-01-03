@@ -13,8 +13,12 @@ export default function SendOtpForm({ setStep, mobile, setMobile }) {
     if (mobile.length !== 11) {
       setAlertShow(true)
     } else {
-      sendOtp(mobile);
+    const response  =await sendOtp(mobile);
+   
+    if(response){
+
       setStep(2);
+    }
     }
   };
   return (

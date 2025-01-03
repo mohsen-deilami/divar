@@ -2,17 +2,17 @@ import api from "./configs/api"
 const sendOtp=async(mobile)=>{
     try {
         const response =await api.post('auth/send-otp' , {mobile});
+        console.log(response);
         return response
     } catch (error) {
-        return error
+        return {error}
     }
 }
 
 const checkOtp=async(mobile , code)=>{
-    console.log(mobile,code);
     try {
-        const response =await api.post('auth/check-otp' , {mobile , code});
-        return response
+        const response  =await api.post('auth/check-otp' , {mobile , code});
+        return {response}
     } catch (error) {
         return error
     }

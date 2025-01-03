@@ -6,25 +6,47 @@ import { checkOtp } from "../../services";
 import TextField from "@mui/material/TextField";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
-export default function CheckOtfForm({mobile, code, setCode, setStep}) {
-    const [alertShow , setAlertShow]=useState(false);
+import { toast, ToastContainer } from "react-toastify";
+export default function CheckOtfForm({ mobile, code, setCode, setStep }) {
+  const [alertShow, setAlertShow] = useState(false);
   const onSubmit = async () => {
-    if (!code) {
-      setAlertShow(true)
+    if (code.length !== 5) {
+      setAlertShow(true);
     } else {
-      checkOtp(mobile , code);
+      const { response, error } = await checkOtp(mobile, code);
+      console.log(response , error)
+      if (response.status === 200) {
+        toast.success("Your verification code is  valid.", {
+          position: "top-center",
+        });
+      } else {
+       
+        toast.warn("Your verification code is not valid.", {
+          position: "top-center",
+        });
+      }
     }
   };
   return (
-    <Grid container spacing={2} sx={{ margin: "100px auto", maxWidth: "800px" , boxShadow: "rgba(0,0,0,0.1) 0px 4px 12px",
-      borderRadius: 4, padding:'16px' }}>
+    <Grid
+      container
+      spacing={2}
+      sx={{
+        margin: "100px auto",
+        maxWidth: "800px",
+        boxShadow: "rgba(0,0,0,0.1) 0px 4px 12px",
+        borderRadius: 4,
+        padding: "16px",
+      }}
+    >
       <Grid>
         <Typography variant="h3" component="h6">
           Check Code
         </Typography>
       </Grid>
-      <Typography variant="h5" component="h6" sx={{margin:'16px'}}>
-      Please enter the Verification code sent to number {mobile} and press the send button.
+      <Typography variant="h5" component="h6" sx={{ margin: "16px" }}>
+        Please enter the Verification code sent to number {mobile} and press the
+        send button.
       </Typography>
 
       <TextField
@@ -32,20 +54,24 @@ export default function CheckOtfForm({mobile, code, setCode, setStep}) {
         label="Enter Verification code..."
         variant="outlined"
         value={code}
-        onChange={(e) =>{setCode(e.target.value)}}
+        onChange={(e) => {
+          setAlertShow(false);
+          setCode(e.target.value);
+        }}
       />
 
       <Button variant="outlined" onClick={onSubmit}>
         Send...
       </Button>
-      <Button variant="outlined" onClick={()=>setStep(1)}>
+      <Button variant="outlined" onClick={() => setStep(1)}>
         Change mobile number
       </Button>
       {alertShow && (
-         <Stack sx={{ width: "100%" }} spacing={2}>
-         <Alert severity="warning">Enter the Verification code</Alert>
-       </Stack>
+        <Stack sx={{ width: "100%" }} spacing={2}>
+          <Alert severity="warning">Enter the Verification code</Alert>
+        </Stack>
       )}
+      <ToastContainer />
     </Grid>
-  )
+  );
 }
