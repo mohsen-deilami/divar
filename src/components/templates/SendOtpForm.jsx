@@ -10,10 +10,8 @@ import Stack from "@mui/material/Stack";
 export default function SendOtpForm({ setStep, mobile, setMobile }) {
   const [alertShow , setAlertShow]=useState(false);
   const onSubmit = async () => {
-    if (mobile.length < 11) {
+    if (mobile.length !== 11) {
       setAlertShow(true)
-
-      console.log("object");
     } else {
       sendOtp(mobile);
       setStep(2);
@@ -34,7 +32,6 @@ export default function SendOtpForm({ setStep, mobile, setMobile }) {
 
       <TextField
         type="number"
-        id="outlined-basic"
         label="Enter your number..."
         variant="outlined"
         value={mobile}
