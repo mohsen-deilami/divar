@@ -7,6 +7,7 @@ import TextField from "@mui/material/TextField";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import { toast, ToastContainer } from "react-toastify";
+import { setCookie } from "../../utils/cookie";
 export default function CheckOtfForm({ mobile, code, setCode, setStep }) {
   const [alertShow, setAlertShow] = useState(false);
   const onSubmit = async () => {
@@ -14,11 +15,10 @@ export default function CheckOtfForm({ mobile, code, setCode, setStep }) {
       setAlertShow(true);
     } else {
       const { response, error } = await checkOtp(mobile, code);
-      console.log(response , error)
       if (response.status === 200) {
-        toast.success("Your verification code is  valid.", {
-          position: "top-center",
-        });
+        console.log('chec',response,error)
+        
+        setCookie(response.data);
       } else {
        
         toast.warn("Your verification code is not valid.", {
