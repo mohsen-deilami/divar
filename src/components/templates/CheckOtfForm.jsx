@@ -15,9 +15,7 @@ export default function CheckOtfForm({ mobile, code, setCode, setStep }) {
       setAlertShow(true);
     } else {
       const { response, error } = await checkOtp(mobile, code);
-      if (response.status === 200) {
-        console.log('chec',response,error)
-        
+      if (response.status === 200) {        
         setCookie(response.data);
       } else {
        

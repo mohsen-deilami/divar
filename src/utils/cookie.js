@@ -1,5 +1,4 @@
 const setCookie = (Tokens) => {
-  console.log(Tokens.accessToken);
   document.cookie = `accessToken=${Tokens.accessToken}`;
     `max-age=${1 * 24 * 60 * 60}`;
 
