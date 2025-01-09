@@ -8,6 +8,7 @@ import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import { toast, ToastContainer } from "react-toastify";
 import { setCookie } from "../../utils/cookie";
+import { Link } from "react-router-dom";
 export default function CheckOtfForm({ mobile, code, setCode, setStep }) {
   const [alertShow, setAlertShow] = useState(false);
   const onSubmit = async () => {
@@ -17,6 +18,7 @@ export default function CheckOtfForm({ mobile, code, setCode, setStep }) {
       const { response, error } = await checkOtp(mobile, code);
       if (response.status === 200) {        
         setCookie(response.data);
+        <Link to='/' />
       } else {
        
         toast.warn("Your verification code is not valid.", {
