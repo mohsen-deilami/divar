@@ -1,8 +1,8 @@
 import api from "./configs/api"
+import { getCookie } from "./utils/cookie";
 const sendOtp=async(mobile)=>{
     try {
         const response =await api.post('auth/send-otp' , {mobile});
-        console.log(response);
         return response
     } catch (error) {
         return {error}
@@ -17,4 +17,9 @@ const checkOtp=async(mobile , code)=>{
         return error
     }
 }
-export {sendOtp , checkOtp}
+
+const token = getCookie('accessToken')
+const getProfile = ()=>api.get('/user/whoami',{
+    headers :{Authorization : `Bearer ${token}`}
+}) 
+export {sendOtp , checkOtp , getProfile}

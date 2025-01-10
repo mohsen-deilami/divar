@@ -5,8 +5,12 @@ import Dashboard from '../pages/Dashboard'
 import Adminpanel from '../pages/Adminpanel'
 import NotfoundPage from '../pages/NotfoundPage'
 import AuthPage from '../pages/AuthPage'
+import { getProfile } from '../services'
+import { useQuery } from '@tanstack/react-query'
 
 export default function Router() {
+  const {data , isLoading , error}=useQuery({queryKey:["profile"],queryFn: getProfile});
+  console.log(data);
   return (
     <Routes>
         <Route index element={<Homepage/>}></Route>
