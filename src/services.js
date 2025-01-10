@@ -20,4 +20,16 @@ const checkOtp=async(mobile , code)=>{
 
 const token = getCookie('accessToken')
 const getProfile = ()=>api.get('/user/whoami') 
+const newToken=async ()=>{
+    const refreshToken = getCookie('refreshToken');
+    if(!refreshToken) return;
+    try {
+        const response= await api.post('/auth/check-refresh-token' , {
+            refreshToken
+        })
+        return {response}
+    } catch (error) {
+        return {error}
+    }
+}
 export {sendOtp , checkOtp , getProfile}
