@@ -19,7 +19,5 @@ const checkOtp=async(mobile , code)=>{
 }
 
 const token = getCookie('accessToken')
-const getProfile = ()=>api.get('/user/whoami',{
-    headers :{Authorization : `Bearer ${token}`}
-}) 
+const getProfile = ()=>api.get('/user/whoami') 
 export {sendOtp , checkOtp , getProfile}
