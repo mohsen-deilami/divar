@@ -12,7 +12,7 @@ export default function Header() {
 
       <Container maxWidth="lg">
     
-          <Grid container sx={{display:'flex' , justifyContent:'space-between', padding:'16px' , boxShadow: "rgba(0,0,0,0.1) 0px 4px 12px",}}>
+          <Grid container sx={{display:'flex' , justifyContent:'space-between', padding:'16px' , borderBottom: "2px solid gray"}}>
             <Grid sx={{display:'flex' , alignItems:'center'  }}> 
                <Typography variant="h4" component="h4" sx={{ marginRight:'10px'}}
            
