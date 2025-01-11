@@ -42,7 +42,7 @@ export default function SendOtpForm({ setStep, mobile, setMobile }) {
         onChange={(e) =>{setAlertShow(false); setMobile(e.target.value)}}
       />
 
-      <Button variant="outlined" onClick={onSubmit}>
+      <Button variant="outlined" onClick={onSubmit} style={{width:'110px'}}>
         Send...
       </Button>
       {alertShow && (
