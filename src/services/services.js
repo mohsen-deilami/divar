@@ -41,4 +41,4 @@ const getCategories=()=>api.get('category');
  
 const addCategory = (data)=>api.post('category' , data);
 
-export { sendOtp, checkOtp, getProfile, getNewToken , getCategories};
+export { sendOtp, checkOtp, getProfile, getNewToken , getCategories , addCategory};

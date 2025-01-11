@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import { Button, Container, TextField, Typography  } from "@mui/material";
 import Grid from "@mui/material/Grid2";
+import { addCategory } from "../services/services";
+import { useMutation } from "@tanstack/react-query";
 
 export default function CategoryForm() {
     const [form , setForm]=useState({name:"",slug:"",icon:""});
+    const {mutate , isLoading , error, data}=useMutation({mutationFn: addCategory})
     const changeHandler=event=>{
         setForm({...form , [event.target.name]:event.target.value});
     }
     const submitHandler=event=>{
         event.preventDefault();
-        console.log(form)
+        mutate(form ,{onSuccess : data =>console.log(data) , onError : error => console.log(error)})
+        console.log(form);
+        
     }
   return (
     <Container>
