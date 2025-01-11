@@ -1,8 +1,8 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 export default function Footer() {
   return (
-    <div>
+    <Container maxWidth="xl">
       <Typography
         component="p"
         variant="p"
@@ -18,6 +18,6 @@ export default function Footer() {
       >
         Developed By Mohsen Deilami ❤
       </Typography>
-    </div>
+    </Container>
   );
 }

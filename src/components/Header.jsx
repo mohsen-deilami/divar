@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 export default function Header() {
   return (
 
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
     
           <Grid container sx={{display:'flex' , justifyContent:'space-between', padding:'16px' , borderBottom: "2px solid gray"}}>
             <Grid sx={{display:'flex' , alignItems:'center'  }}> 
