@@ -18,7 +18,7 @@ export default function CategoryForm() {
   const [icon, setIcon] = useState("");
   const queryClient=useQueryClient();
   const [form, setForm] = useState({ name: "", slug: "", icon: "" });
-  const handleChange = (event) => {
+  const selectHandler = (event) => {
     setIcon(event.target.value);
     setForm({ ...form, [event.target.name]: event.target.value }, icon);
     console.log(form);
@@ -51,7 +51,7 @@ export default function CategoryForm() {
         <Typography
           variant="h4"
           component="h4"
-          sx={{ marginTop: "10px", display: "block" }}
+          sx={{ margin: "20px 0", display: "block" }}
         >
           Enter new Category
         </Typography>
@@ -69,7 +69,7 @@ export default function CategoryForm() {
           <TextField
             sx={{ width: "300px" }}
             type="text"
-            label="Enter the name number..."
+            label="Enter the name ..."
             variant="outlined"
             name="name"
             id="name"
@@ -96,7 +96,7 @@ export default function CategoryForm() {
               name="icon"
               value={icon}
               label="Icon"
-              onChange={handleChange}
+              onChange={selectHandler}
             >
               <MenuItem value={"game"}>game</MenuItem>
               <MenuItem value={"home"}>home</MenuItem>
@@ -110,7 +110,7 @@ export default function CategoryForm() {
         </Grid>
         <Button
           variant="outlined"
-          style={{ width: "140px", marginTop: "10px", marginBottom: "20px" }}
+          style={{ width: "140px", marginTop: "20px", marginBottom: "20px" }}
           onClick={submitHandler}
         >
           Create...

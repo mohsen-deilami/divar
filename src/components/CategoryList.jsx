@@ -9,7 +9,6 @@ export default function CategoryList() {
     queryKey: ["get-category"],
     queryFn: () => getCategories(),
   });
-  console.log(data, error);
   return (
     <Container maxWidth="lg">
       {isLoading ? <p>Loading...</p> : ""}
