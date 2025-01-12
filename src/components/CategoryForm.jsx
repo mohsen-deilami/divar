@@ -21,7 +21,7 @@ export default function CategoryForm() {
   const selectHandler = (event) => {
     setIcon(event.target.value);
     setForm({ ...form, [event.target.name]: event.target.value }, icon);
-    console.log(form);
+   
   };
 
   const { mutate, isLoading, error, data } = useMutation({
@@ -29,7 +29,7 @@ export default function CategoryForm() {
   });
   const changeHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
-    console.log(form);
+
   };
   const submitHandler = (event) => {
     event.preventDefault();
@@ -39,11 +39,11 @@ export default function CategoryForm() {
       }),
       onError: (error) => console.log(error),
     });
-    console.log(form);
+   
   };
   return (
     <Container maxWidth="lg">
-      <form
+      <form 
         style={{ marginTop: "32px" }}
         onChange={changeHandler}
         onSubmit={submitHandler}
