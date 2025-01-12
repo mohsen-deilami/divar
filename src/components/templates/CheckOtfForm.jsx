@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Typography } from "@mui/material";
+import { InputAdornment, InputLabel, OutlinedInput, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import Button from "@mui/material/Button";
 import { checkOtp, getProfile } from "../../services/services";
@@ -53,7 +53,7 @@ export default function CheckOtfForm({ mobile, code, setCode, setStep }) {
         send button.
       </Typography>
 
-      <TextField
+     {/*  <TextField
         type="number"
         label="Enter Verification code..."
         variant="outlined"
@@ -62,7 +62,18 @@ export default function CheckOtfForm({ mobile, code, setCode, setStep }) {
           setAlertShow(false);
           setCode(e.target.value);
         }}
-      />
+      /> */}
+
+<InputLabel htmlFor="outlined-adornment-amount">Verification code</InputLabel>
+           <OutlinedInput
+            id="outlined-adornment-amount"
+         
+            label="Enter Verification code..."
+            onChange={(e) => {
+              setAlertShow(false);
+              setCode(e.target.value);
+            }}
+          />
 
       <Button variant="outlined" onClick={onSubmit}>
         Send...

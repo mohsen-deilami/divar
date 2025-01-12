@@ -4,7 +4,9 @@ import { Container , Typography , TextField,
     FormControl,
     InputLabel,
     MenuItem,
-    Button} from '@mui/material'
+    Button,
+    OutlinedInput,
+    InputAdornment} from '@mui/material'
 import Grid from "@mui/material/Grid2";
 import { useQuery } from '@tanstack/react-query';
 import { getCategories } from '../services/services';
@@ -45,6 +47,8 @@ export default function AddPost() {
           <TextField
             sx={{ width: "300px" }}
             type="text"
+            multiline
+          minRows={4}
             label="Enter the content..."
             variant="outlined"
             name="content"
@@ -52,13 +56,19 @@ export default function AddPost() {
           />
         </Grid>
         <Grid sx={{ display: "block", marginTop: "20px" }}>
-          <TextField
+         {/*  <TextField
             sx={{ width: "300px" }}
-            type="text"
+            type="number"
             label="Enter the price..."
             variant="outlined"
             name="amount"
             id="amount"
+          /> */}
+          <InputLabel htmlFor="outlined-adornment-amount">Price</InputLabel>
+           <OutlinedInput   sx={{ width: "300px" }}
+            id="outlined-adornment-amount"
+            startAdornment={<InputAdornment position="start">$</InputAdornment>}
+            label="Amount"
           />
         </Grid>
         <Grid sx={{ display: "block", marginTop: "20px" }}>
@@ -66,6 +76,16 @@ export default function AddPost() {
             sx={{ width: "300px" }}
             type="text"
             label="Enter the City ..."
+            variant="outlined"
+            name="city"
+            id="city"
+          />
+        </Grid>
+        <Grid sx={{ display: "block", marginTop: "20px" }}>
+          <TextField
+            sx={{ width: "300px" }}
+            type="file"
+           
             variant="outlined"
             name="city"
             id="city"
@@ -92,6 +112,7 @@ export default function AddPost() {
             </select>
          
         </Grid>
+        
         <Button
           variant="outlined"
           style={{ width: "140px", marginTop: "20px", marginBottom: "20px" }}

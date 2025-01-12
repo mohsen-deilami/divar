@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Typography } from "@mui/material";
+import { InputLabel, OutlinedInput, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import Button from "@mui/material/Button";
 import { sendOtp } from "../../services/services";
-import TextField from "@mui/material/TextField";
+import SendIcon from '@mui/icons-material/Send';
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 
@@ -34,15 +34,23 @@ export default function SendOtpForm({ setStep, mobile, setMobile }) {
         verification code will be sent to your phone number.
       </Typography>
 
-      <TextField
+      <InputLabel htmlFor="outlined-adornment-amount"> Mobile number...</InputLabel>
+           <OutlinedInput
+            id="outlined-adornment-amount"
+            startAdornment={<InputAdornment position="start">0123456789</InputAdornment>}
+            label="Enter your number..."
+            value={mobile}
+            onChange={(e) =>{setAlertShow(false); setMobile(e.target.value)}}
+          />
+      {/* <TextField
         type="number"
-        label="Enter your number..."
+        label="Enter your mobile number..."
         variant="outlined"
         value={mobile}
         onChange={(e) =>{setAlertShow(false); setMobile(e.target.value)}}
-      />
+      /> */}
 
-      <Button variant="outlined" onClick={onSubmit} style={{width:'110px'}}>
+      <Button variant="outlined" onClick={onSubmit} style={{width:'110px'}} endIcon={<SendIcon />}>
         Send...
       </Button>
       {alertShow && (
