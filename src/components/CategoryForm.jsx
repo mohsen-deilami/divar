@@ -24,7 +24,7 @@ export default function CategoryForm() {
    
   };
 
-  const { mutate, isLoading, error, data } = useMutation({
+  const { mutate,  error, data } = useMutation({
     mutationFn: addCategory,
   });
   const changeHandler = (event) => {

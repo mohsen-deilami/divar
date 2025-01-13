@@ -3,9 +3,7 @@ import {
   Container,
   Typography,
   TextField,
- 
   InputLabel,
-
   Button,
   OutlinedInput,
   InputAdornment,
@@ -15,19 +13,18 @@ import { useQuery } from "@tanstack/react-query";
 import { getCategories } from "../services/services";
 import { getCookie } from "../utils/cookie";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function AddPost() {
   const [category, setCategory] = useState("");
-  const [form , setForm]=useState({
-    title:"",
-    content:"",
-    amount:"",
-    city:"",
-    image:"",
-    category:""
-  })
-
-
+  const [form, setForm] = useState({
+    title: "",
+    content: "",
+    amount: "",
+    city: "",
+    image: "",
+    category: "",
+  });
 
   const { data } = useQuery({
     queryKey: ["get-category"],
@@ -35,48 +32,46 @@ export default function AddPost() {
   });
   const selectHandler = (evet) => {
     setCategory(evet.target.value);
-    };
+  };
   const submitHandler = () => {
-    const formData=new FormData();
-    for(let i in form){
-        formData.append(i , form[i])
+    const formData = new FormData();
+    for (let i in form) {
+      formData.append(i, form[i]);
     }
-    const token = getCookie('accessToken');
-    axios.post("http://localhost:3400/post/create" , formData,{
-        headers:{
-            "Content-Type": "multipart/form-data" ,
+    const token = getCookie("accessToken");
+    axios
+      .post("http://localhost:3400/post/create", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
 
-            Authorization:`Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
-
-       
-    }).then(res => console.log(res))
-    .catch(error =>console.log(error));
-    
+      })
+      .then((res) => {
+        console.log(res);
+        toast.success("Successfully add new post!");
+      })
+      .catch((error) => toast.warn(error.message));
   };
 
   const changeHandler = (event) => {
-    
-    if(event.target.name !== image){
-setForm({...form , [event.target.name] : event.target.value})
+    if (event.target.name !== image) {
+      setForm({ ...form, [event.target.name]: event.target.value });
+    } else {
+      setForm({ ...form, [event.target.name]: event.target.files[0] });
     }
-    else
-    {
-setForm({...form , [event.target.name]: event.target.files[0]})
-    }
-   
   };
   return (
     <Container maxWidth="lg">
       <form onChange={changeHandler}>
         <Grid>
           <Typography component="h3" variant="h3" sx={{ margin: "20px 0" }}>
-              Register a new ad
+            Register a new ad
           </Typography>
         </Grid>
 
         <Grid sx={{ display: "block", marginTop: "20px" }}>
-        <label
+          <label
             htmlFor="title"
             style={{ display: "block", margin: "16px 0 5px 0" }}
           >
@@ -92,7 +87,7 @@ setForm({...form , [event.target.name]: event.target.files[0]})
           />
         </Grid>
         <Grid sx={{ display: "block", marginTop: "20px" }}>
-        <label
+          <label
             htmlFor="content"
             style={{ display: "block", margin: "16px 0 5px 0" }}
           >
@@ -110,8 +105,12 @@ setForm({...form , [event.target.name]: event.target.files[0]})
           />
         </Grid>
         <Grid sx={{ display: "block", marginTop: "20px" }}>
-        
-          <InputLabel htmlFor="outlined-adornment-amount" style={{marginBottom:'14px'}}>Price</InputLabel>
+          <InputLabel
+            htmlFor="outlined-adornment-amount"
+            style={{ marginBottom: "14px" }}
+          >
+            Price
+          </InputLabel>
           <OutlinedInput
             sx={{ width: "300px" }}
             id="outlined-adornment-amount"
@@ -121,7 +120,7 @@ setForm({...form , [event.target.name]: event.target.files[0]})
           />
         </Grid>
         <Grid sx={{ display: "block", marginTop: "20px" }}>
-        <label
+          <label
             htmlFor="city"
             style={{ display: "block", margin: "16px 0 5px 0" }}
           >
@@ -181,6 +180,7 @@ setForm({...form , [event.target.name]: event.target.files[0]})
         >
           Create...
         </Button>
+        <ToastContainer position="top-center" reverseOrder={true} />
       </form>
     </Container>
   );
