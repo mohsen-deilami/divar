@@ -1,6 +1,6 @@
 import React from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { getAllPosts } from '../services/services'
+import { getAllPosts, getCategories } from '../services/services'
 import Sidebar from '../components/Sidebar';
 import Main from '../components/Main';
 import { Container } from '@mui/material';
@@ -8,10 +8,14 @@ export default function Homepage() {
   const {data: posts , isLoading}=useQuery({queryKey: ["get-all-posts"],
     queryFn: () => getAllPosts()
 })
-console.log(posts)
+const { data:categories } = useQuery({
+  queryKey: ["get-category"],
+  queryFn: () => getCategories(),
+});
+
   return (
     <Container maxWidth='lg'>
-     <Sidebar/>
+     <Sidebar categories={categories}/>
      <Main posts={posts}/>
     </Container>
   )
