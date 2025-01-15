@@ -9,20 +9,21 @@ import {
   InputAdornment,
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getCategories } from "../services/services";
 import { getCookie } from "../utils/cookie";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 
 export default function AddPost() {
+  const queryClient=useQueryClient();
   const [category, setCategory] = useState("");
   const [form, setForm] = useState({
     title: "",
     content: "",
     amount: "",
     city: "",
-    image: "",
+    images: "",
     category: "",
   });
 
@@ -38,8 +39,9 @@ export default function AddPost() {
     for (let i in form) {
       formData.append(i, form[i]);
     }
+  
     const token = getCookie("accessToken");
-    axios
+     axios
       .post("http://localhost:3400/post/create", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -48,16 +50,21 @@ export default function AddPost() {
         },
       })
       .then((res) => {
-        console.log(res);
         toast.success("Successfully add new post!");
+        queryClient.invalidateQueries({
+          queryKey:["my-posts"]
+        })
       })
-      .catch((error) => toast.warn(error.message));
+      .catch((error) => toast.warn(error.message)); 
   };
 
   const changeHandler = (event) => {
-    if (event.target.name !== image) {
+    if (event.target.name !== 'images') {
       setForm({ ...form, [event.target.name]: event.target.value });
+      console.log(form)
     } else {
+
+      console.log(event.target.files[0])
       setForm({ ...form, [event.target.name]: event.target.files[0] });
     }
   };
@@ -147,8 +154,8 @@ export default function AddPost() {
             sx={{ width: "300px" }}
             type="file"
             variant="outlined"
-            name="image"
-            id="image"
+            name="images"
+            id="images"
           />
         </Grid>
         <Grid sx={{ display: "block", marginTop: "10px" }}>

@@ -11,4 +11,10 @@ const getCookie=cookieName=>{
   return document.cookie.split(';').find(token =>token.trim().split('=')[0]=== cookieName)?.split('=')[1];
   
 }
-export { setCookie , getCookie};
+
+const deleteCookie=()=>{
+  document.cookie='accessToken= ; expires=Wed, 18 Dec 2000 12:00:00 GMT';
+
+document.cookie='refreshToken=; expires=Wed, 18 Dec 2000 12:00:00 GMT';
+}
+export { setCookie , getCookie , deleteCookie} ;

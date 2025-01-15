@@ -43,5 +43,7 @@ const addCategory = (data)=>api.post('category' , data);
 
 const getMyPosts=()=>api.get('post/my')
 
+const getAllPosts=()=>api.get("");
 
-export { sendOtp, checkOtp, getProfile, getNewToken , getCategories , addCategory , getMyPosts };
+
+export { sendOtp, checkOtp, getProfile, getNewToken , getCategories , addCategory , getMyPosts , getAllPosts};
