@@ -18,7 +18,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { ExpandMore } from "@mui/icons-material";
 export default function Main({ posts, categories }) {
   return (
-    <div>
+    <div style={{display:'flex'}}>
       {posts && categories
         ? posts.data.posts.map((post) => (
             <Card sx={{ maxWidth: 345 }} key={post._id}>
@@ -26,7 +26,7 @@ export default function Main({ posts, categories }) {
               {categories.data.map(
                 (category) =>
                   post.category === category._id && (
-                    <CardHeader
+                    <CardHeader key={category._id}
                       avatar={
                         <Avatar aria-label="recipe">
                           <img

@@ -1,28 +1,40 @@
-import React from 'react'
+import React from "react";
 import Grid from "@mui/material/Grid2";
-import { Typography } from '@mui/material';
-export default function Sidebar({categories}) {
-
+import { Collapse, List, ListItemButton, ListItemIcon, ListItemText, ListSubheader, Typography } from "@mui/material";
+export default function Sidebar({ categories }) {
   return (
     <div>
-     {categories ?
-     (
-categories.data.map(category=>(
-       <Grid key={category._id}>
-      <Typography>
-{category.name}
-      </Typography>
-      <img
+      
+       
+      
+          <List 
+          sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+          component="nav"
+          aria-labelledby="nested-list-subheader"
+          subheader={
+            <ListSubheader component="div" id="nested-list-subheader">
+              Categories
+            </ListSubheader>
+          }
+        >
+          {categories &&
+           categories.data.map((category) => (
+          <ListItemButton key={category._id}>
+            <ListItemIcon>
+            <img
               src={`${category.icon}.svg`}
               alt=""
               style={{ height: "25px", width: "25px" }}
-              />
-      
-     </Grid>
-
-))
-    ):''
-    }
+            />
+            </ListItemIcon>
+            <ListItemText primary={category.name} />
+          </ListItemButton>
+         
+         
+        
+         
+        ))}
+        </List>
     </div>
-  )
+  );
 }

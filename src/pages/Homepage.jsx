@@ -14,7 +14,7 @@ const { data:categories } = useQuery({
 });
 
   return (
-    <Container maxWidth='lg'>
+    <Container maxWidth='lg' sx={{display:'flex'}}>
      <Sidebar categories={categories}/>
      <Main posts={posts} categories={categories}/>
     </Container>
