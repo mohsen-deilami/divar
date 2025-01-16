@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardMedia,
   Collapse,
+  Container,
   IconButton,
   Typography,
 } from "@mui/material";
@@ -18,11 +19,11 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { ExpandMore } from "@mui/icons-material";
 export default function Main({ posts, categories }) {
   return (
-    <div style={{display:'flex'}}>
+    <Container maxWidth='lg' style={{display:'flex' , alignItems:'center' , flex:'1'}}>
       {posts && categories
         ? posts.data.posts.map((post) => (
-            <Card sx={{ maxWidth: 345 }} key={post._id}>
-              <div></div>
+            <Grid style={{ border:'2px solid #eaeaea' , borderRadius:'8px' , padding:'5px'}} key={post._id}>
+             
               {categories.data.map(
                 (category) =>
                   post.category === category._id && (
@@ -102,7 +103,7 @@ export default function Main({ posts, categories }) {
                   </Typography>
                 </CardContent>
               </Collapse>
-            </Card>
+            </Grid>
 
             /* <Grid key={post._id} sx={{display:'flex', justifyContent:'space-between', border:'2px solid #eaeaea' , borderRadius:'8px' , padding:'5px'}}>
  
@@ -128,6 +129,6 @@ export default function Main({ posts, categories }) {
 </Grid> */
           ))
         : ""}
-    </div>
+    </Container>
   );
 }
