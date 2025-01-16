@@ -38,8 +38,8 @@ export default function PostList() {
             {post.options.title}
           </Typography>
           
-           <Typography component="p" variant="p" sx={{ margin: "20px 0" }}>
-             {post.options.content}
+           <Typography component="p" variant="p" sx={{whiteSpace:'npwrap',overflow:'hidden' , textOverflow:'ellipsis', margin: "20px 0" , width:'560px'}}>
+             {post.options.content?.slice(0,70)}...
           </Typography>
            </Grid>
            </Grid>

@@ -1,14 +1,28 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React from "react";
-import { getCategories } from "../services/services";
-import { Container, Typography } from "@mui/material";
+import { deleteCategory, getCategories } from "../services/services";
+import { Button, Container, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
+import { ToastContainer } from "react-toastify";
 
 export default function CategoryList() {
+  const queryClient=useQueryClient();
   const { data, isLoading, error } = useQuery({
     queryKey: ["get-category"],
     queryFn: () => getCategories(),
   });
+  const { mutate,  error:errerDelete, data:dataDeleted } = useMutation({
+    mutationFn: deleteCategory,
+  });
+  const deleteHandler=id=>{
+    mutate(id, {
+      onSuccess: (data) => queryClient.invalidateQueries({
+        queryKey:["get-category"]
+      }),
+      onError: (error) => console.log(error),
+    });
+  
+  }
   return (
     <Container maxWidth="lg">
       {isLoading ? <p>Loading...</p> : ""}
@@ -40,15 +54,27 @@ export default function CategoryList() {
               {item.name}
             </Typography>
             </Grid>
+        <Grid sx={{display:'flex' , alignItems:'center'}}>
+
             <Typography
               variant="p"
               component="p"
-              sx={{ marginTop: "10px", display: "block" }}
+             
               >
               slug : {item.slug}
             </Typography>
+            <Button
+          variant="outlined"
+          style={{ width: "140px", margin: "20px 0 20px 20px" }}
+          onClick={()=>deleteHandler(item._id)}
+          >
+          Delete...
+        </Button>
+        
+          </Grid>
           </Grid>
         ))}
+    
     </Container>
   );
 }

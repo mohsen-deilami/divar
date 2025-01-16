@@ -14,11 +14,13 @@ export default function Header() {
     
           <Grid container sx={{display:'flex' , justifyContent:'space-between', padding:'16px' , borderBottom: "2px solid gray"}}>
             <Grid sx={{display:'flex' , alignItems:'center'  }}> 
+          <Link to='/'>
                <Typography variant="h4" component="h4" sx={{ marginRight:'10px'}}
            
-          >
+           >
             Divar
           </Typography>
+            </Link>
           <AddLocationAltIcon/>
          
           <Typography variant="h6" component="div" sx={{marginLeft:'5px'}} >
@@ -27,7 +29,7 @@ export default function Header() {
           </Grid>
 
             <Grid sx={{display:'flex' , alignItems:'center'  }}>
-              <Link to='/auth'>
+              <Link to='/admin'>
             <Typography variant="p" component="div" >
            My Account
           </Typography>

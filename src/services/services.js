@@ -45,5 +45,5 @@ const getMyPosts=()=>api.get('post/my')
 
 const getAllPosts=()=>api.get("");
 
-
-export { sendOtp, checkOtp, getProfile, getNewToken , getCategories , addCategory , getMyPosts , getAllPosts};
+const deleteCategory=(id)=>api.delete(`/category/${id}`);
+export { sendOtp, checkOtp, getProfile, getNewToken , getCategories , addCategory , getMyPosts , getAllPosts, deleteCategory};

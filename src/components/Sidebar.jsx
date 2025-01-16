@@ -8,11 +8,11 @@ export default function Sidebar({ categories }) {
        
       
           <List 
-          sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+          sx={{minWidth:'24px' , maxWidth: 360, bgcolor: 'background.paper' }}
           component="nav"
           aria-labelledby="nested-list-subheader"
           subheader={
-            <ListSubheader component="div" id="nested-list-subheader">
+            <ListSubheader component="div" id="nested-list-subheader" sx={{fontSize:'22px' , fontWeight:'bold'}}>
               Categories
             </ListSubheader>
           }

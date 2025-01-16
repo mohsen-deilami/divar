@@ -41,6 +41,8 @@ export default function CategoryForm() {
     });
    
   };
+
+ 
   return (
     <Container maxWidth="lg">
       <form 
@@ -55,15 +57,7 @@ export default function CategoryForm() {
         >
           Enter new Category
         </Typography>
-        {data?.status === 201 &&
-          toast.success("New category successfully registered.", {
-            position: "top-center",
-          })}
-
-        {!!error &&
-          toast.warn("There was a problem with the program.", {
-            position: "top-center",
-          })}
+       
 
         <Grid sx={{ display: "block", marginTop: "20px" }}>
           <TextField
@@ -115,6 +109,16 @@ export default function CategoryForm() {
         >
           Create...
         </Button>
+        {data?.status === 201 &&
+          toast.success("The category successfully Deleted.", {
+            position: "top-center",
+          })}
+
+        {!!error &&
+          toast.warn("There was a problem with the program.", {
+            position: "top-center",
+          })}
+       
         <ToastContainer />
       </form>
     </Container>
