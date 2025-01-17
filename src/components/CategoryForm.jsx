@@ -109,8 +109,8 @@ export default function CategoryForm() {
         >
           Create...
         </Button>
-        {data?.status === 201 &&
-          toast.success("The category successfully Deleted.", {
+        {!!data?.status === 201 &&
+          toast.success("The category successfully Crreated.", {
             position: "top-center",
           })}
 

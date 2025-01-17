@@ -3,7 +3,7 @@ import React from "react";
 import { deleteCategory, getCategories } from "../services/services";
 import { Button, Container, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer , toast } from "react-toastify";
 
 export default function CategoryList() {
   const queryClient=useQueryClient();
@@ -16,10 +16,20 @@ export default function CategoryList() {
   });
   const deleteHandler=id=>{
     mutate(id, {
-      onSuccess: (data) => queryClient.invalidateQueries({
+      onSuccess: (data) => {queryClient.invalidateQueries({
         queryKey:["get-category"]
-      }),
-      onError: (error) => console.log(error),
+      })
+     
+        toast.success("The category successfully Deleted.", {
+          position: "top-center",
+        })
+
+     
+      
+    },
+      onError: (error) =>{  toast.warn("There was a problem with the program.", {
+        position: "top-center",
+      })} 
     });
   
   }
@@ -70,7 +80,9 @@ export default function CategoryList() {
           >
           Delete...
         </Button>
-        
+      
+               
+                <ToastContainer />
           </Grid>
           </Grid>
         ))}
