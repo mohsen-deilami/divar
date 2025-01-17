@@ -54,6 +54,14 @@ export default function AddPost() {
         queryClient.invalidateQueries({
           queryKey:["my-posts"]
         })
+        setForm({
+          title: "",
+          content: "",
+          amount: "",
+          city: "",
+          images: "",
+          category: "",
+        })
       })
       .catch((error) => toast.warn(error.message)); 
   };
@@ -61,10 +69,10 @@ export default function AddPost() {
   const changeHandler = (event) => {
     if (event.target.name !== 'images') {
       setForm({ ...form, [event.target.name]: event.target.value });
-      console.log(form)
+    
     } else {
 
-      console.log(event.target.files[0])
+     
       setForm({ ...form, [event.target.name]: event.target.files[0] });
     }
   };
@@ -91,6 +99,7 @@ export default function AddPost() {
             variant="outlined"
             name="title"
             id="title"
+            value={form.title}
           />
         </Grid>
         <Grid sx={{ display: "block", marginTop: "20px" }}>
@@ -109,6 +118,7 @@ export default function AddPost() {
             variant="outlined"
             name="content"
             id="content"
+            value={form.content}
           />
         </Grid>
         <Grid sx={{ display: "block", marginTop: "20px" }}>
@@ -124,6 +134,7 @@ export default function AddPost() {
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
             label="Amount"
             name="amount"
+            value={form.amount}
           />
         </Grid>
         <Grid sx={{ display: "block", marginTop: "20px" }}>
@@ -140,6 +151,7 @@ export default function AddPost() {
             variant="outlined"
             name="city"
             id="city"
+            value={form.city}
           />
         </Grid>
 
@@ -156,6 +168,7 @@ export default function AddPost() {
             variant="outlined"
             name="images"
             id="images"
+           
           />
         </Grid>
         <Grid sx={{ display: "block", marginTop: "10px" }}>

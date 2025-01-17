@@ -31,7 +31,7 @@ export default function Header() {
             <Grid sx={{display:'flex' , alignItems:'center'  }}>
               <Link to='/admin'>
             <Typography variant="p" component="div" >
-           My Account
+           Admin Panel
           </Typography>
               </Link>
            <Person3Icon  />

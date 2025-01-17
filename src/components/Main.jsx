@@ -58,15 +58,11 @@ export default function Main({ posts, categories }) {
                 <Typography variant="body2" sx={{ color: "text.secondary" }}>
                   {post.options.content?.slice(0 , 10)}
                 </Typography>
+                <Typography component="p" variant="p" sx={{ margin: "20px 0" }}>
+           {post.options.city}
+          </Typography>
               </CardContent>
-              <CardActions disableSpacing>
-              
-               
-                <ExpandMore aria-label="show more">
-                  <ExpandMoreIcon />
-                </ExpandMore>
-              </CardActions>
-            
+           
             </Grid>
 
             /* <Grid key={post._id} sx={{display:'flex', justifyContent:'space-between', border:'2px solid #eaeaea' , borderRadius:'8px' , padding:'5px'}}>

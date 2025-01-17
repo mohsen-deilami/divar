@@ -17,7 +17,7 @@ export default function Router() {
         <Route index element={<Homepage/>}></Route>
         <Route path='dashboard' element={data ? <Dashboard/> : <Navigate to='/auth'/>}></Route>
         <Route path='auth' element={data ? <Navigate to='/' /> : <AuthPage/>}></Route>
-        <Route path='admin' element={data && data.data.role === 'ADMIN' ? <Adminpanel/> : <Navigate to='/'/>}></Route>
+        <Route path='admin' element={data && data.data.role === 'ADMIN' ? <Adminpanel/> :(  <Navigate to='/'/>)}></Route>
         <Route path='*' element={<NotfoundPage/>}></Route>
       
     </Routes>
