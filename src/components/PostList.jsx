@@ -1,16 +1,22 @@
 import React from 'react'
-import { useQuery} from '@tanstack/react-query'
+import { useQuery, useQueryClient} from '@tanstack/react-query'
 import { getMyPosts } from '../services/services';
 import { Button, Container, Typography } from '@mui/material';
 import Grid from "@mui/material/Grid2";
 import { deleteCookie } from '../utils/cookie';
+import { useNavigate } from 'react-router-dom';
 export default function PostList() {
     const {data , isLoading , error}=useQuery( {queryKey: ["my-posts"],
         queryFn: () => getMyPosts()
     });
-    
+    const queryClient=useQueryClient();
+    const navigate=useNavigate();
    const exitHandler=()=>{
     deleteCookie();
+    queryClient.invalidateQueries({
+      queryKey:["profile"]
+    })
+    navigate('/')
    }
   return (
     <Container maxWidth='lg'>
@@ -38,7 +44,8 @@ export default function PostList() {
             {post.options.title}
           </Typography>
           
-           <Typography component="p" variant="p" sx={{whiteSpace:'npwrap',overflow:'hidden' , textOverflow:'ellipsis', margin: "20px 0" , width:'560px'}}>
+           <Typography component="p" variant="p" 
+           sx={{whiteSpace:'npwrap',overflow:'hidden' , textOverflow:'ellipsis', margin: "20px 0" , width:'560px'}}>
              {post.options.content?.slice(0,70)}...
           </Typography>
            </Grid>
