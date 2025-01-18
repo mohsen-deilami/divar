@@ -4,6 +4,7 @@ import { getAllPosts, getCategories } from '../services/services'
 import Sidebar from '../components/Sidebar';
 import Main from '../components/Main';
 import { Container } from '@mui/material';
+import Grid from "@mui/material/Grid2";
 export default function Homepage() {
   const {data: posts , isLoading}=useQuery({queryKey: ["get-all-posts"],
     queryFn: () => getAllPosts()
@@ -27,9 +28,10 @@ setDisplayed(posts)
  }
 
   return (
-    <Container maxWidth='lg' sx={{display:'flex' , marginTop:'32px' , marginBottom:'32px'}}>
-     <Sidebar categories={categories} selectHandler={selectHandler}/>
-     <Main posts={displayed.length ? displayed : posts } categories={categories}/>
+    <Container maxWidth='lg'  sx={{display:'flex' , marginTop:'32px' , marginBottom:'32px'}}>
+
+     <Sidebar size={{ xs: 12, sm: 4, md: 3 }} categories={categories} selectHandler={selectHandler}/>
+     <Main size={{ xs: 12, sm: 8, md: 9 }}   posts={displayed.length ? displayed : posts } categories={categories}/>
     </Container>
   )
 }

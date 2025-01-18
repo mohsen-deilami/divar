@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid2";
-import { Collapse, List, ListItemButton, ListItemIcon, ListItemText, ListSubheader } from "@mui/material";
+import {  List, ListItemButton, ListItemIcon, ListItemText, ListSubheader } from "@mui/material";
 import AddToQueueIcon from '@mui/icons-material/AddToQueue';
 export default function Sidebar({ categories , selectHandler}) {
 
