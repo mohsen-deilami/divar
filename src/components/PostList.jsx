@@ -6,7 +6,7 @@ import Grid from "@mui/material/Grid2";
 import { deleteCookie } from "../utils/cookie";
 import { useNavigate } from "react-router-dom";
 export default function PostList() {
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["my-posts"],
     queryFn: () => getMyPosts(),
   });
@@ -40,12 +40,13 @@ export default function PostList() {
                     justifyContent: "space-between",
                     border: "2px solid #eaeaea",
                     padding: "10px",
-                   
+
                     my: "36px",
                     borderRadius: "5px",
                   }}
                 >
-                  <Grid size={{ xs: 12, sm: 6, md: 8 }}
+                  <Grid
+                    size={{ xs: 12, sm: 6, md: 8 }}
                     sx={{
                       my: "10px",
                       height: "80px",
