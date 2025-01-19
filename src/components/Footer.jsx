@@ -11,10 +11,9 @@ export default function Footer() {
           padding: "20px",
           borderTop: "2px solid gray",
           padding: "10px",
-           textAlign:"center",
-           fontWeight:'900'
+          textAlign: "center",
+          fontWeight: "900",
         }}
-       
       >
         Developed By Mohsen Deilami ❤
       </Typography>

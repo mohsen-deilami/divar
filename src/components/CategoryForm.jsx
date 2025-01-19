@@ -16,36 +16,33 @@ import FormControl from "@mui/material/FormControl";
 
 export default function CategoryForm() {
   const [icon, setIcon] = useState("");
-  const queryClient=useQueryClient();
+  const queryClient = useQueryClient();
   const [form, setForm] = useState({ name: "", slug: "", icon: "" });
   const selectHandler = (event) => {
     setIcon(event.target.value);
     setForm({ ...form, [event.target.name]: event.target.value }, icon);
-   
   };
 
-  const { mutate,  error, data } = useMutation({
+  const { mutate, error, data } = useMutation({
     mutationFn: addCategory,
   });
   const changeHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
-
   };
   const submitHandler = (event) => {
     event.preventDefault();
     mutate(form, {
-      onSuccess: (data) => queryClient.invalidateQueries({
-        queryKey:["get-category"]
-      }),
+      onSuccess: (data) =>
+        queryClient.invalidateQueries({
+          queryKey: ["get-category"],
+        }),
       onError: (error) => console.log(error),
     });
-   
   };
 
- 
   return (
     <Container maxWidth="lg">
-      <form 
+      <form
         style={{ marginTop: "32px" }}
         onChange={changeHandler}
         onSubmit={submitHandler}
@@ -57,7 +54,6 @@ export default function CategoryForm() {
         >
           Enter new Category
         </Typography>
-       
 
         <Grid sx={{ display: "block", marginTop: "20px" }}>
           <TextField
@@ -118,7 +114,7 @@ export default function CategoryForm() {
           toast.warn("There was a problem with the program.", {
             position: "top-center",
           })}
-       
+
         <ToastContainer />
       </form>
     </Container>

@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import {
-  TextField,
-  Typography,
-} from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import Button from "@mui/material/Button";
 import { sendOtp } from "../../services/services";
