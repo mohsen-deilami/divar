@@ -19,8 +19,6 @@ const checkOtp = async (mobile, code) => {
   }
 };
 
-
-
 const token = getCookie("accessToken");
 const getProfile = () => api.get("/user/whoami");
 const getNewToken = async () => {
@@ -36,14 +34,23 @@ const getNewToken = async () => {
   }
 };
 
+const getCategories = () => api.get("category");
 
-const getCategories=()=>api.get('category');
- 
-const addCategory = (data)=>api.post('category' , data);
+const addCategory = (data) => api.post("category", data);
 
-const getMyPosts=()=>api.get('post/my')
+const getMyPosts = () => api.get("post/my");
 
-const getAllPosts=()=>api.get("");
+const getAllPosts = () => api.get("");
 
-const deleteCategory=(id)=>api.delete(`/category/${id}`);
-export { sendOtp, checkOtp, getProfile, getNewToken , getCategories , addCategory , getMyPosts , getAllPosts, deleteCategory};
+const deleteCategory = (id) => api.delete(`/category/${id}`);
+export {
+  sendOtp,
+  checkOtp,
+  getProfile,
+  getNewToken,
+  getCategories,
+  addCategory,
+  getMyPosts,
+  getAllPosts,
+  deleteCategory,
+};
